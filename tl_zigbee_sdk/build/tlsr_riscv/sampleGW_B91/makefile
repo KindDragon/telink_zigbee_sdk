@@ -113,7 +113,7 @@ main-build: sampleGW_B91.elf secondary-outputs
 sampleGW_B91.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Andes C Linker'
-	$(CROSS_COMPILE)gcc -O2 -nostartfiles -static -L../../../zigbee/lib/riscv -L../../../platform/lib -L../../../platform/riscv -flto -mcmodel=small -fpack-struct -fshort-enums -mcpu=d25f -ffunction-sections -fdata-sections -mext-dsp -mabi=ilp32f -fmessage-length=0 -fomit-frame-pointer -fno-strict-aliasing -fshort-wchar -fuse-ld=bfd -T"/cygdrive/C/Users/arkad/AndeSight3/workspace/zigbee_sdk/tl_zigbee_sdk/build/tlsr_riscv/boot.link" -Wl,--gc-sections -o "sampleGW_B91.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	$(CROSS_COMPILE)gcc -O2 -nostartfiles -static -L../../../zigbee/lib/riscv -L../../../platform/lib -L../../../platform/riscv -flto -mcmodel=small -fpack-struct -fshort-enums -mcpu=d25f -ffunction-sections -fdata-sections -mext-dsp -mabi=ilp32f -fmessage-length=0 -fomit-frame-pointer -fno-strict-aliasing -fshort-wchar -fuse-ld=bfd -T"$(PWD)/../../../build/tlsr_riscv/boot.link" -Wl,--gc-sections -o "sampleGW_B91.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -158,7 +158,7 @@ clean:
 	-@echo ' '
 
 pre-build:
-	-"../../../tools/tl_link_load.sh" "../../../platform/boot/b91/boot_b91.link" "C:\Users\arkad\AndeSight3\workspace\zigbee_sdk\tl_zigbee_sdk\build\tlsr_riscv/boot.link"
+	-"../../../tools/tl_link_load.sh" "../../../platform/boot/b91/boot_b91.link" "$(PWD)/../../../build/tlsr_riscv/boot.link"
 	-@echo ' '
 
 post-build:

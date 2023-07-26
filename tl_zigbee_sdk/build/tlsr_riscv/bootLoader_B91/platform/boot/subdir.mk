@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables
 S_UPPER_SRCS += \
-C:/Users/arkad/AndeSight3/workspace/zigbee_sdk/tl_zigbee_sdk/platform/boot/link_cfg.S
+$(PWD)/../../../platform/boot/link_cfg.S
 
 OBJS += \
 ./platform/boot/link_cfg.o
@@ -14,7 +14,7 @@ S_UPPER_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-platform/boot/link_cfg.o: /cygdrive/C/Users/arkad/AndeSight3/workspace/zigbee_sdk/tl_zigbee_sdk/platform/boot/link_cfg.S
+platform/boot/link_cfg.o: $(PWD)/../../../platform/boot/link_cfg.S
 	@echo 'Building file: $<'
 	@echo 'Invoking: Andes C Compiler'
 	$(CROSS_COMPILE)gcc -DMCU_CORE_B91=1 -D__PROJECT_TL_BOOT_LOADER__=1 -I../../../apps/common -I../../../apps/bootLoader -I../../../platform/chip_b91 -I../../../platform/riscv -I../../../platform -I../../../proj/common -I../../../proj -O2 -mcmodel=small -fpack-struct -fshort-enums -flto -Wall -mcpu=d25f -ffunction-sections -fdata-sections -mext-dsp -mabi=ilp32f  -c -fmessage-length=0  -fomit-frame-pointer -fno-strict-aliasing -fshort-wchar -fuse-ld=bfd -Wno-nonnull-compare -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d) $(@:%.o=%.o)" -o "$@" "$<"

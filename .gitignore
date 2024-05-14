@@ -1,0 +1,5 @@
+# Skip makefile build result
+tl_zigbee_sdk/build/**/output/
+tl_zigbee_sdk/build/**/*.o
+tl_zigbee_sdk/build/**/*.d
+tl_zigbee_sdk/build/**/*.elf

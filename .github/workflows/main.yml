@@ -1,0 +1,32 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: docker/setup-buildx-action@v3
+
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: docker
+        load: true
+        tags: local
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Build Telink Zigbee SDK for TLSR9 series chips
+      run: docker run -v $PWD:/srv -w/srv local scripts/build.sh
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: binaries
+        path: |
+          tl_zigbee_sdk/build/tlsr_riscv/*/*.elf
